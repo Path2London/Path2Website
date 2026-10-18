@@ -1,1509 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Path2 — The Consulting Academy</title>
+  <meta name="description"
+    content="Path2 is a selective consulting academy preparing the next generation of leaders for careers at top-tier consulting firms.">
+  <link rel="canonical" href="https://path2.co.uk/">
+  <meta name="theme-color" content="#143C9A">
+
+  <link rel="icon" href="favicon.ico" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Link previews (WhatsApp, LinkedIn, iMessage, Slack) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Path2">
+  <meta property="og:url" content="https://path2.co.uk/">
+  <meta property="og:title" content="Path2 — The Consulting Academy">
+  <meta property="og:description"
+    content="Path2 is a selective consulting academy preparing the next generation of leaders for careers at top-tier consulting firms.">
+  <meta property="og:image" content="https://path2.co.uk/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Path2 — The Consulting Academy">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Space+Grotesk:wght@400;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Space+Grotesk:wght@400;500;700&display=swap"
     rel="stylesheet">
-  <style>
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <link rel="stylesheet" href="css/styles.css">
 
-    :root {
-      --blue: #3B5BDB;
-      --blue-dark: #1A2F8A;
-      --blue-mid: #4C6EF5;
-      /* Updated color scheme to match bg-[rgba(20,60,154,0.8)] request */
-      --navy: rgba(20, 60, 154, 0.8);
-      --navy-mid: rgba(20, 60, 154, 0.9);
-      --ivory: #F8F5EE;
-      --gold: #C9A84C;
-      --gold-light: #E8D5A3;
-      --muted: #8A95B0;
-      --border: rgba(255, 255, 255, 0.08);
-      --font-display: 'Cormorant Garamond', serif;
-      --font-body: 'DM Sans', sans-serif;
-      --font-ui: 'Space Grotesk', sans-serif;
-    }
+  <!-- Analytics: paste the Umami (or Plausible) script tag here once the account exists -->
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--navy);
-      color: var(--ivory);
-      font-family: var(--font-body);
-      font-weight: 300;
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* CURSOR */
-    .cursor {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      background: var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-    }
-
-    .cursor-ring {
-      position: fixed;
-      width: 32px;
-      height: 32px;
-      border: 1px solid rgba(201, 168, 76, 0.4);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: width .25s, height .25s, border-color .25s;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 200;
-      padding: 0 48px;
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: background .5s, backdrop-filter .5s;
-    }
-
-    nav.scrolled {
-      background: rgba(20, 60, 154, 0.95);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-
-    .nav-logo-mark {
-      width: 34px;
-      height: 34px;
-      background: var(--blue);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-ui);
-      font-weight: 700;
-      font-size: 12px;
-      color: #fff;
-    }
-
-    .nav-logo-text {
-      font-family: var(--font-ui);
-      font-size: 15px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: .5px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      font-family: var(--font-ui);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .65);
-      transition: color .2s;
-    }
-
-    .nav-links a:hover {
-      color: #fff;
-    }
-
-    .nav-cta {
-      font-family: var(--font-ui);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--navy);
-      background: var(--ivory);
-      padding: 10px 22px;
-      border-radius: 2px;
-      text-decoration: none;
-      transition: background .2s;
-    }
-
-    .nav-cta:hover {
-      background: var(--gold-light);
-    }
-
-    /* HERO */
-    .hero {
-      height: 100vh;
-      min-height: 700px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(160deg, rgba(20, 60, 154, 1) 0%, rgba(20, 60, 154, 0.85) 55%, rgba(15, 45, 115, 0.9) 100%);
-    }
-
-    #hero-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-
-    .hero-bg-grid {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background-image: linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
-      background-size: 80px 80px;
-      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
-    }
-
-    .hero-scroll-line {
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      transform: translateX(-50%);
-      width: 1px;
-      height: 80px;
-      background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, .3));
-      animation: line-pulse 2s ease-in-out infinite;
-      z-index: 5;
-    }
-
-    @keyframes line-pulse {
-
-      0%,
-      100% {
-        opacity: .3;
-        height: 60px
-      }
-
-      50% {
-        opacity: .8;
-        height: 80px
-      }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 5;
-      text-align: center;
-      max-width: 900px;
-      padding: 0 32px;
-    }
-
-    .hero-eyebrow {
-      font-family: var(--font-ui);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 28px;
-      opacity: 0;
-      animation: fade-up .8s .3s ease forwards;
-    }
-
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(72px, 10vw, 130px);
-      font-weight: 300;
-      line-height: .9;
-      letter-spacing: -2px;
-      color: #fff;
-      margin-bottom: 8px;
-      opacity: 0;
-      animation: fade-up .8s .5s ease forwards;
-    }
-
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-
-    .hero-rotate-wrapper {
-      height: 80px;
-      overflow: hidden;
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fade-up .8s .7s ease forwards;
-    }
-
-    .hero-rotate-track {
-      display: flex;
-      flex-direction: column;
-      animation: rotate-words 8s ease-in-out infinite;
-    }
-
-    .hero-rotate-word {
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-size: clamp(52px, 7vw, 86px);
-      font-weight: 600;
-      font-style: italic;
-      color: #fff;
-      letter-spacing: -1px;
-    }
-
-    @keyframes rotate-words {
-
-      0%,
-      28% {
-        transform: translateY(0)
-      }
-
-      33%,
-      61% {
-        transform: translateY(-80px)
-      }
-
-      66%,
-      94% {
-        transform: translateY(-160px)
-      }
-
-      100% {
-        transform: translateY(-240px)
-      }
-    }
-
-    .hero-sub {
-      font-size: 16px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, .7);
-      letter-spacing: .5px;
-      line-height: 1.7;
-      margin-bottom: 52px;
-      opacity: 0;
-      animation: fade-up .8s .9s ease forwards;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      justify-content: center;
-      opacity: 0;
-      animation: fade-up .8s 1.1s ease forwards;
-    }
-
-    .btn-primary {
-      font-family: var(--font-ui);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--navy);
-      background: var(--ivory);
-      padding: 16px 36px;
-      border-radius: 2px;
-      text-decoration: none;
-      transition: background .3s;
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-light);
-    }
-
-    .btn-ghost {
-      font-family: var(--font-ui);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .8);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: color .2s;
-    }
-
-    .btn-ghost:hover {
-      color: #fff;
-    }
-
-    .btn-ghost::after {
-      content: '→';
-      transition: transform .2s;
-    }
-
-    .btn-ghost:hover::after {
-      transform: translateX(4px);
-    }
-
-    @keyframes fade-up {
-      from {
-        opacity: 0;
-        transform: translateY(24px)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
-    /* TICKER */
-    .ticker-wrap {
-      background: var(--navy-mid);
-      overflow: hidden;
-      padding: 14px 0;
-      border-top: 1px solid rgba(255, 255, 255, .06);
-      border-bottom: 1px solid rgba(255, 255, 255, .06);
-    }
-
-    .ticker-track {
-      display: flex;
-      width: max-content;
-      animation: ticker-scroll 35s linear infinite;
-    }
-
-    .ticker-item {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-      padding: 0 40px;
-      white-space: nowrap;
-    }
-
-    .ticker-firm {
-      font-family: var(--font-ui);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .7);
-    }
-
-    .ticker-sep {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: var(--gold);
-      opacity: .6;
-    }
-
-    @keyframes ticker-scroll {
-      0% {
-        transform: translateX(0)
-      }
-
-      100% {
-        transform: translateX(-50%)
-      }
-    }
-
-    /* ABOUT */
-    .about-wrap {
-      background: var(--navy);
-    }
-
-    .about {
-      padding: 140px 80px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-      align-items: center;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .about-label {
-      font-family: var(--font-ui);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 24px;
-    }
-
-    .about-title {
-      font-family: var(--font-display);
-      font-size: clamp(42px, 5vw, 64px);
-      font-weight: 300;
-      line-height: 1.1;
-      color: #fff;
-    }
-
-    .about-title em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-
-    .about-right p {
-      font-size: 16px;
-      line-height: 1.9;
-      color: rgba(255, 255, 255, .75);
-      margin-bottom: 24px;
-    }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-top: 48px;
-      padding-top: 48px;
-      border-top: 1px solid var(--border);
-    }
-
-    .stat-number {
-      font-family: var(--font-display);
-      font-size: 52px;
-      font-weight: 300;
-      color: #fff;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .stat-number span {
-      color: var(--gold);
-      font-style: italic;
-    }
-
-    .stat-label {
-      font-family: var(--font-ui);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .7);
-    }
-
-    /* NEW INFO SECTIONS (ABOUT PATH2 & SERVICES) */
-    .info-section {
-      padding: 120px 80px;
-      text-align: center;
-      background: var(--navy-mid);
-      border-top: 1px solid var(--border);
-    }
-
-    .info-title {
-      font-family: var(--font-display);
-      font-size: clamp(42px, 5vw, 64px);
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 24px;
-    }
-
-    .info-sub {
-      font-size: 18px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.85);
-      max-width: 900px;
-      margin: 0 auto 64px auto;
-      line-height: 1.6;
-    }
-
-    .info-grid {
-      display: grid;
-      gap: 24px;
-      margin: 0 auto;
-      max-width: 1300px;
-    }
-
-    .about-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .services-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .info-card {
-      background: #dbe4fa;
-      border-radius: 12px;
-      padding: 40px 32px;
-      text-align: left;
-      color: #111;
-      position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: transform 0.3s;
-    }
-
-    .info-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .info-card-icon {
-      width: 44px;
-      height: 44px;
-      background: #fff;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 24px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    .info-card h3 {
-      font-family: var(--font-ui);
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: #1a2f8a;
-      letter-spacing: -0.5px;
-    }
-
-    .info-card p {
-      font-size: 15px;
-      color: #333;
-      line-height: 1.65;
-    }
-
-    /* OUR ALUMNI SLIDER */
-    .our-alumni-section {
-      padding: 120px 80px;
-      background: var(--navy);
-      overflow: hidden;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .our-alumni-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 64px;
-    }
-
-    .our-alumni-controls {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .alumni-slider-btn {
-      width: 44px;
-      height: 44px;
-      border: 1px solid rgba(255, 255, 255, .2);
-      background: transparent;
-      border-radius: 2px;
-      color: #fff;
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: border-color .2s, color .2s, background .2s;
-      line-height: 1;
-    }
-
-    .alumni-slider-btn:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      background: rgba(201, 168, 76, .06);
-    }
-
-    .alumni-slider-counter {
-      font-family: var(--font-ui);
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: #fff;
-      min-width: 48px;
-      text-align: center;
-    }
-
-    .alumni-slider-viewport {
-      overflow: hidden;
-      position: relative;
-    }
-
-    .alumni-slider-track {
-      display: flex;
-      gap: 2px;
-      transition: transform .55s cubic-bezier(.4, 0, .2, 1);
-      will-change: transform;
-    }
-
-    .alumni-slide-card {
-      flex-shrink: 0;
-      background: rgba(255, 255, 255, .05);
-      border: 1px solid rgba(255, 255, 255, .1);
-      padding: 44px 40px 40px;
-      position: relative;
-      overflow: hidden;
-      transition: background .3s, border-color .3s;
-      cursor: default;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 220px;
-    }
-
-    .alumni-slide-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, #fff, transparent);
-      opacity: 0;
-      transition: opacity .4s;
-    }
-
-    .alumni-slide-card:hover {
-      background: rgba(255, 255, 255, .1);
-      border-color: rgba(255, 255, 255, .2);
-    }
-
-    .alumni-slide-card:hover::before {
-      opacity: 1;
-    }
-
-    .alumni-slide-name {
-      font-family: var(--font-display);
-      font-size: 32px;
-      font-weight: 300;
-      color: #fff;
-      line-height: 1.05;
-      letter-spacing: -.3px;
-      margin-bottom: 20px;
-    }
-
-    .alumni-slide-name em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-
-    .alumni-slide-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: auto;
-    }
-
-    .alumni-slide-index {
-      font-family: var(--font-display);
-      font-size: 64px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, .1);
-      position: absolute;
-      bottom: 16px;
-      right: 24px;
-      line-height: 1;
-      pointer-events: none;
-    }
-
-    .alumni-slide-cohort-tag {
-      font-family: var(--font-ui);
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(201, 168, 76, .25);
-      padding: 4px 10px;
-      border-radius: 1px;
-    }
-
-    .alumni-slide-year {
-      font-family: var(--font-ui);
-      font-size: 11px;
-      color: rgba(255, 255, 255, .6);
-      letter-spacing: 1px;
-    }
-
-    /* Slider progress bar */
-    .alumni-slider-progress {
-      display: flex;
-      gap: 4px;
-      margin-top: 40px;
-    }
-
-    .alumni-prog-seg {
-      height: 1px;
-      flex: 1;
-      background: rgba(255, 255, 255, .2);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .alumni-prog-seg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform .3s ease;
-    }
-
-    .alumni-prog-seg.active::after {
-      transform: scaleX(1);
-    }
-
-    /* PARTNERS ORBITAL */
-    .partners-section {
-      background: var(--navy-mid);
-      padding: 120px 80px;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .partners-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-      max-width: 1300px;
-      margin: 0 auto;
-    }
-
-    .partners-left p {
-      font-size: 15px;
-      line-height: 1.8;
-      color: rgba(255, 255, 255, .8);
-      max-width: 380px;
-      margin-top: 24px;
-    }
-
-    .section-label {
-      font-family: var(--font-ui);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
-    }
-
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(40px, 5vw, 64px);
-      font-weight: 300;
-      color: #fff;
-      line-height: 1.1;
-    }
-
-    .section-title em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-
-    /* ORBITAL */
-    .orbital-outer {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .orbital-wrap {
-      position: relative;
-      width: 480px;
-      height: 480px;
-      flex-shrink: 0;
-    }
-
-    .orbital-center {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-      box-shadow: 0 0 0 12px rgba(255, 255, 255, .05), 0 0 0 24px rgba(255, 255, 255, .02);
-    }
-
-    .orbital-center-text {
-      font-family: var(--font-ui);
-      font-size: 10px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: .5px;
-      text-align: center;
-      line-height: 1.4;
-    }
-
-    .orbit-ring {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, .15);
-      transform: translate(-50%, -50%);
-    }
-
-    .orbit-ring-1 {
-      width: 240px;
-      height: 240px;
-    }
-
-    .orbit-ring-2 {
-      width: 400px;
-      height: 400px;
-      border-style: dashed;
-      border-color: rgba(255, 255, 255, .1);
-    }
-
-    .orbit-node {
-      position: absolute;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, .1);
-      border: 1px solid rgba(255, 255, 255, .2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background .3s, border-color .3s, transform .3s;
-      cursor: default;
-      backdrop-filter: blur(4px);
-    }
-
-    .orbit-node:hover {
-      background: rgba(255, 255, 255, .3);
-      border-color: rgba(255, 255, 255, .6);
-      transform: scale(1.15) !important;
-    }
-
-    .orbit-node-label {
-      font-family: var(--font-ui);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-      color: #fff;
-      text-align: center;
-      line-height: 1.3;
-      padding: 0 6px;
-    }
-
-    /* Hover Tooltip for Orbital */
-    .orbit-node::after {
-      content: attr(data-full);
-      position: absolute;
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-5px);
-      background: #fff;
-      color: #1a2f8a;
-      padding: 6px 12px;
-      border-radius: 4px;
-      font-family: var(--font-ui);
-      font-size: 11px;
-      font-weight: 700;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      z-index: 100;
-    }
-
-    .orbit-node:hover::after {
-      opacity: 1;
-      transform: translateX(-50%) translateY(-15px);
-    }
-
-    .orbit-connector {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(255, 255, 255, .3), transparent);
-      transform-origin: left center;
-      z-index: 1;
-    }
-
-    /* CTA */
-    .cta-section {
-      padding: 160px 80px;
-      background: linear-gradient(160deg, rgba(20, 60, 154, 0.9) 0%, rgba(20, 60, 154, 0.8) 60%);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-bg-circle {
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, .1);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .cta-bg-circle-2 {
-      position: absolute;
-      width: 900px;
-      height: 900px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, .05);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .cta-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-eyebrow {
-      font-family: var(--font-ui);
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 24px;
-    }
-
-    .cta-title {
-      font-family: var(--font-display);
-      font-size: clamp(48px, 7vw, 88px);
-      font-weight: 300;
-      line-height: 1.05;
-      color: #fff;
-      margin-bottom: 32px;
-    }
-
-    .cta-title em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-
-    .cta-sub {
-      font-size: 16px;
-      color: rgba(255, 255, 255, .8);
-      line-height: 1.7;
-      margin-bottom: 56px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .cta-intake {
-      font-family: var(--font-ui);
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .6);
-      margin-top: 24px;
-    }
-
-    /* FOOTER */
-    footer {
-      background: rgba(15, 45, 115, 0.9);
-      padding: 80px 80px 48px;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 64px;
-      margin-bottom: 64px;
-    }
-
-    .footer-brand p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: rgba(255, 255, 255, .6);
-      margin-top: 20px;
-      max-width: 280px;
-    }
-
-    .footer-col h4 {
-      font-family: var(--font-ui);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .7);
-      margin-bottom: 20px;
-    }
-
-    .footer-col ul {
-      list-style: none;
-    }
-
-    .footer-col li {
-      margin-bottom: 12px;
-    }
-
-    .footer-col a {
-      font-size: 14px;
-      color: rgba(255, 255, 255, .6);
-      text-decoration: none;
-      transition: color .2s;
-    }
-
-    .footer-col a:hover {
-      color: #fff;
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-copy {
-      font-family: var(--font-ui);
-      font-size: 11px;
-      color: rgba(255, 255, 255, .5);
-      letter-spacing: .5px;
-    }
-
-    /* REVEAL */
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity .8s ease, transform .8s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-delay-1 {
-      transition-delay: .1s;
-    }
-
-    .reveal-delay-2 {
-      transition-delay: .2s;
-    }
-
-    .reveal-delay-3 {
-      transition-delay: .3s;
-    }
-
-    .reveal-delay-4 {
-      transition-delay: .4s;
-    }
-
-    /* NOISE */
-    .noise-overlay {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1000;
-      opacity: .025;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 200px 200px;
-    }
-
-    /* ─── HAMBURGER NAV ─── */
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      z-index: 201;
-    }
-
-    .nav-hamburger span {
-      display: block;
-      width: 22px;
-      height: 1.5px;
-      background: #fff;
-      border-radius: 1px;
-      transition: transform .3s, opacity .3s;
-    }
-
-    .nav-hamburger.open span:nth-child(1) {
-      transform: translateY(6.5px) rotate(45deg);
-    }
-
-    .nav-hamburger.open span:nth-child(2) {
-      opacity: 0;
-      transform: scaleX(0);
-    }
-
-    .nav-hamburger.open span:nth-child(3) {
-      transform: translateY(-6.5px) rotate(-45deg);
-    }
-
-    .nav-mobile-menu {
-      display: none;
-      position: fixed;
-      top: 72px;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(15, 40, 130, 0.97);
-      backdrop-filter: blur(20px);
-      z-index: 198;
-      padding: 16px 28px 48px;
-      flex-direction: column;
-      overflow-y: auto;
-    }
-
-    .nav-mobile-menu.open {
-      display: flex;
-    }
-
-    .nav-mobile-menu>ul {
-      list-style: none;
-    }
-
-    .nav-mobile-link {
-      display: block;
-      padding: 18px 0;
-      font-family: var(--font-ui);
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .75);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255, 255, 255, .07);
-      transition: color .2s;
-    }
-
-    .nav-mobile-link:hover,
-    .nav-mobile-link:active {
-      color: #fff;
-    }
-
-    .nav-mobile-cta-btn {
-      display: block;
-      margin-top: 32px;
-      text-align: center;
-      font-family: var(--font-ui);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: rgba(20, 60, 154, 0.9);
-      background: var(--ivory);
-      padding: 17px;
-      border-radius: 2px;
-      text-decoration: none;
-    }
-
-    /* ─── TABLET 900px ─── */
-    @media (max-width: 900px) {
-      .about {
-        padding: 100px 48px;
-        gap: 56px;
-      }
-
-      .info-section {
-        padding: 100px 48px;
-      }
-
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .our-alumni-section {
-        padding: 100px 48px;
-      }
-
-      .partners-section {
-        padding: 100px 48px;
-      }
-
-      .partners-inner {
-        grid-template-columns: 1fr;
-        gap: 56px;
-      }
-
-      .orbital-outer {
-        justify-content: center;
-      }
-
-      .cta-section {
-        padding: 120px 48px;
-      }
-
-      footer {
-        padding: 72px 48px 40px;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-      }
-    }
-
-    /* ─── MOBILE 768px ─── */
-    @media (max-width: 768px) {
-
-      .cursor,
-      .cursor-ring {
-        display: none;
-      }
-
-      body {
-        cursor: auto;
-      }
-
-      nav {
-        padding: 0 20px;
-      }
-
-      .nav-links,
-      .nav-cta {
-        display: none !important;
-      }
-
-      .nav-hamburger {
-        display: flex;
-      }
-
-      .hero-content {
-        padding: 0 24px;
-      }
-
-      .hero-rotate-wrapper {
-        height: 64px;
-        margin-bottom: 28px;
-      }
-
-      .hero-rotate-track {
-        animation: rotate-words-sm 8s ease-in-out infinite;
-      }
-
-      .hero-rotate-word {
-        height: 64px;
-        font-size: clamp(34px, 10vw, 60px);
-      }
-
-      .hero-sub {
-        font-size: 14px;
-        line-height: 1.65;
-        margin-bottom: 36px;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 16px;
-      }
-
-      .btn-primary {
-        text-align: center;
-        display: block;
-        padding: 16px 24px;
-      }
-
-      .btn-ghost {
-        justify-content: center;
-        padding: 14px 0;
-      }
-
-      .about {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 72px 24px;
-      }
-
-      .about-stats {
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        margin-top: 32px;
-        padding-top: 32px;
-      }
-
-      .stat-number {
-        font-size: 40px;
-      }
-
-      .info-section {
-        padding: 72px 24px;
-      }
-
-      .info-title {
-        font-size: clamp(30px, 8vw, 48px);
-      }
-
-      .info-sub {
-        font-size: 15px;
-        margin-bottom: 40px;
-      }
-
-      .about-grid,
-      .services-grid {
-        grid-template-columns: 1fr !important;
-      }
-
-      .info-card {
-        padding: 28px 24px;
-      }
-
-      .our-alumni-section {
-        padding: 72px 20px;
-      }
-
-      .our-alumni-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-        margin-bottom: 36px;
-      }
-
-      .partners-section {
-        padding: 72px 24px;
-      }
-
-      .partners-inner {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .orbital-wrap {
-        width: 300px;
-        height: 300px;
-      }
-
-      .orbit-ring-1 {
-        width: 150px;
-        height: 150px;
-      }
-
-      .orbit-ring-2 {
-        width: 252px;
-        height: 252px;
-      }
-
-      .orbital-center {
-        width: 68px;
-        height: 68px;
-      }
-
-      .orbital-center-text {
-        font-size: 8px;
-      }
-
-      .orbit-node {
-        width: 60px;
-        height: 60px;
-      }
-
-      .orbit-node-label {
-        font-size: 8px;
-      }
-
-      .cta-section {
-        padding: 96px 24px;
-      }
-
-      .cta-title {
-        font-size: clamp(36px, 9vw, 64px);
-      }
-
-      .cta-sub {
-        font-size: 15px;
-        margin-bottom: 40px;
-      }
-
-      footer {
-        padding: 56px 24px 32px;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        gap: 16px;
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .about-stats {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .hero-eyebrow {
-        font-size: 9px;
-        letter-spacing: 2.5px;
-      }
-    }
-
-    @keyframes rotate-words-sm {
-
-      0%,
-      28% {
-        transform: translateY(0)
-      }
-
-      33%,
-      61% {
-        transform: translateY(-64px)
-      }
-
-      66%,
-      94% {
-        transform: translateY(-128px)
-      }
-
-      100% {
-        transform: translateY(-192px)
-      }
-    }
-  </style>
+  <script src="js/main.js" defer></script>
 </head>
 
 <body>
 
-  <div class="noise-overlay"></div>
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
-  <nav id="nav">
-    <a href="#" class="nav-logo">
-      <img src="path2_logo.webp" alt="Path2 Logo" style="height: 45px; width: auto;">
+  <nav id="nav" aria-label="Main">
+    <a href="#home" class="nav-logo">
+      <img src="path2_logo.webp" alt="Path2 home">
     </a>
     <ul class="nav-links">
       <li><a href="#about-path2">About</a></li>
@@ -1513,8 +55,9 @@
       <li><a href="#apply">Contact</a></li>
     </ul>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8R1CfEZj9jSy-531BmPSIcbUNEbxkxQrMMoJz9t6jpANODw/viewform?usp=dialog"
-      target="_blank" class="nav-cta">Join the Network</a>
-    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+      target="_blank" rel="noopener" class="nav-cta">Join the Network</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false"
+      aria-controls="navMobileMenu">
       <span></span><span></span><span></span>
     </button>
   </nav>
@@ -1528,537 +71,280 @@
       <li><a href="#apply" class="nav-mobile-link">Contact</a></li>
     </ul>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8R1CfEZj9jSy-531BmPSIcbUNEbxkxQrMMoJz9t6jpANODw/viewform?usp=dialog"
-      target="_blank" class="nav-mobile-cta-btn">Join the Network</a>
+      target="_blank" rel="noopener" class="nav-mobile-cta-btn">Join the Network</a>
   </div>
 
-  <section class="hero" id="home">
-    <canvas id="hero-canvas"></canvas>
-    <div class="hero-bg-grid"></div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">Consulting Academy — Class of 2026</p>
-      <div class="hero-title">Path<em>2</em></div>
-      <div class="hero-rotate-wrapper">
-        <div class="hero-rotate-track">
-          <div class="hero-rotate-word">McKinsey</div>
-          <div class="hero-rotate-word">BCG</div>
-          <div class="hero-rotate-word">Bain</div>
-          <div class="hero-rotate-word">McKinsey</div>
+  <main>
+    <section class="hero" id="home">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-bg-grid" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="hero-eyebrow">Consulting Academy — Class of 2026</p>
+        <h1 class="hero-title">Path<em>2</em></h1>
+        <div class="hero-rotate-wrapper" aria-hidden="true">
+          <div class="hero-rotate-track">
+            <div class="hero-rotate-word">McKinsey</div>
+            <div class="hero-rotate-word">BCG</div>
+            <div class="hero-rotate-word">Bain</div>
+            <div class="hero-rotate-word">McKinsey</div>
+          </div>
+        </div>
+        <p class="hero-sub">The UK's most selective consulting academy.<br>We build the case-readiness, network, and
+          credibility to land MBB and top-tier offers.</p>
+        <div class="hero-actions">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8R1CfEZj9jSy-531BmPSIcbUNEbxkxQrMMoJz9t6jpANODw/viewform?usp=dialog"
+            target="_blank" rel="noopener" class="btn-primary">Apply for Class of 2026</a>
+          <a href="#alumni" class="btn-ghost">View Alumni</a>
         </div>
       </div>
-      <p class="hero-sub">The UK's most selective consulting academy.<br>We build the case-readiness, network, and
-        credibility to land MBB and top-tier offers.</p>
-      <div class="hero-actions">
+      <div class="hero-scroll-line" aria-hidden="true"></div>
+    </section>
+
+    <div class="ticker-wrap">
+      <div class="ticker-track">
+        <div class="ticker-item">
+          <span class="ticker-firm">McKinsey &amp; Company</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">Boston Consulting Group</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">Bain &amp; Company</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">Oliver Wyman</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">EY Parthenon</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">Deloitte Strategy &amp; Ops</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">PwC Strategy&amp;</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">LEK Consulting</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">Roland Berger</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">Kearney</span><span class="ticker-sep"></span>
+        </div>
+        <!-- duplicate set so the scroll loops seamlessly; hidden from screen readers -->
+        <div class="ticker-item" aria-hidden="true">
+          <span class="ticker-firm">McKinsey &amp; Company</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">Boston Consulting Group</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">Bain &amp; Company</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">Oliver Wyman</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">EY Parthenon</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">Deloitte Strategy &amp; Ops</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">PwC Strategy&amp;</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">LEK Consulting</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">Roland Berger</span><span class="ticker-sep"></span>
+          <span class="ticker-firm">Kearney</span><span class="ticker-sep"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-wrap" id="about">
+      <div class="about">
+        <div class="about-left reveal">
+          <p class="about-label">The Academy</p>
+          <h2 class="about-title">Built for those<br>who play to <em>win.</em></h2>
+        </div>
+        <div class="about-right reveal reveal-delay-2">
+          <p>Path2 is a selective consulting academy preparing the next generation of leaders for careers at top-tier
+            consulting firms. We go beyond frameworks — we build the mindset, network, and credibility that elite firms
+            expect on day one.</p>
+          <p>Every cohort is small, intensive, and chosen with purpose.</p>
+          <div class="about-stats">
+            <div>
+              <div class="stat-number">15</div>
+              <div class="stat-label">Places Per Cohort</div>
+            </div>
+            <div>
+              <div class="stat-number">1</div>
+              <div class="stat-label">Cohorts Delivered</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="info-section reveal" id="about-path2">
+      <h2 class="info-title">About Path2</h2>
+      <p class="info-sub">We are dedicated to helping ambitious students break into competitive careers through expert
+        guidance, comprehensive preparation, strategic networking, and key resources. Every student deserves access to
+        the mentorship needed to achieve their career dreams</p>
+      <div class="info-grid about-grid reveal reveal-delay-2">
+
+        <div class="info-card">
+          <div class="info-card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2f8a" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="20" width="20" height="2" />
+              <path d="M4 20V10" />
+              <path d="M10 20V10" />
+              <path d="M14 20V10" />
+              <path d="M20 20V10" />
+              <path d="M2 10l10-5 10 5" />
+            </svg>
+          </div>
+          <h3>Expert Guidance</h3>
+          <p>Personalised mentorship and learning from industry professionals who have been where you want to go.</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2f8a" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
+            </svg>
+          </div>
+          <h3>Key Resources</h3>
+          <p>Gain access to essential information, discovering new opportunities and standing out from your competition
+          </p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2f8a" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </div>
+          <h3>Strategic Networking</h3>
+          <p>Connect with alumni and professionals to unlock hidden opportunities.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="info-section reveal" id="services">
+      <h2 class="info-title">Services</h2>
+      <p class="info-sub">Comprehensive support to help you succeed at every stage of your career journey.</p>
+      <div class="info-grid services-grid reveal reveal-delay-2">
+
+        <div class="info-card">
+          <div class="info-card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2f8a" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+            </svg>
+          </div>
+          <h3>Career Guidance</h3>
+          <p>1:1 sessions to map out your ideal career path and build a clear strategy to reach it, with the right
+            resources to execute.</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2f8a" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6" />
+              <line x1="8" y1="12" x2="21" y2="12" />
+              <line x1="8" y1="18" x2="21" y2="18" />
+              <line x1="3" y1="6" x2="3.01" y2="6" />
+              <line x1="3" y1="12" x2="3.01" y2="12" />
+              <line x1="3" y1="18" x2="3.01" y2="18" />
+            </svg>
+          </div>
+          <h3>Profile Optimisation</h3>
+          <p>Refining your LinkedIn, CV, cover letter, and portfolio so your profile reflects your potential and
+            converts opportunities.</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2f8a" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+            </svg>
+          </div>
+          <h3>Internship Procurement</h3>
+          <p>Helping you secure relevant work experience at firms aligned with your strengths and long-term goals.</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2f8a" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
+              <path d="M9 22v-4h6v4" />
+              <path d="M8 6h.01" />
+              <path d="M16 6h.01" />
+              <path d="M12 6h.01" />
+              <path d="M12 10h.01" />
+              <path d="M12 14h.01" />
+              <path d="M16 10h.01" />
+              <path d="M16 14h.01" />
+              <path d="M8 10h.01" />
+              <path d="M8 14h.01" />
+            </svg>
+          </div>
+          <h3>Industry expertise</h3>
+          <p>Expert-level courses designed to give you the technical knowledge and commercial understanding to stand
+            out.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="our-alumni-section" id="alumni">
+      <div class="our-alumni-inner">
+        <div class="our-alumni-header">
+          <div class="our-alumni-header-left">
+            <p class="section-label reveal">Class of 2026</p>
+            <h2 class="section-title reveal reveal-delay-1">Our <em>Alumni.</em></h2>
+          </div>
+          <div class="our-alumni-controls reveal reveal-delay-2">
+            <button class="alumni-slider-btn" id="alumniPrev" aria-label="Previous alumni">&#8592;</button>
+            <span class="alumni-slider-counter" id="alumniCounter" aria-live="polite"></span>
+            <button class="alumni-slider-btn" id="alumniNext" aria-label="Next alumni">&#8594;</button>
+          </div>
+        </div>
+
+        <div class="alumni-slider-viewport" id="alumniViewport">
+          <div class="alumni-slider-track" id="alumniTrack" role="list"></div>
+        </div>
+
+        <div class="alumni-slider-progress" id="alumniProgress" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="partners-section" id="partners">
+      <div class="partners-inner">
+        <div class="partners-left">
+          <p class="section-label reveal">University Partners</p>
+          <h2 class="section-title reveal reveal-delay-1">Our <em>Network.</em></h2>
+          <p class="reveal reveal-delay-2">Path2 works directly with students and societies at the UK's leading
+            universities — providing access, coaching, and placements at elite consulting firms.</p>
+        </div>
+        <div class="orbital-outer reveal reveal-delay-2">
+          <div class="orbital-wrap" id="orbitalWrap">
+            <div class="orbit-ring orbit-ring-1"></div>
+            <div class="orbit-ring orbit-ring-2"></div>
+            <div class="orbital-center">
+              <div class="orbital-center-text">PATH2<br>NETWORK</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" id="apply">
+      <div class="cta-bg-circle" aria-hidden="true"></div>
+      <div class="cta-bg-circle-2" aria-hidden="true"></div>
+      <div class="cta-content">
+        <p class="cta-eyebrow reveal">Applications Now Open</p>
+        <h2 class="cta-title reveal reveal-delay-1">Your consulting<br>career starts <em>here.</em></h2>
+        <p class="cta-sub reveal reveal-delay-2">Join a selective cohort of 15 ambitious students preparing for offers
+          at the world's leading consulting firms.</p>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8R1CfEZj9jSy-531BmPSIcbUNEbxkxQrMMoJz9t6jpANODw/viewform?usp=dialog"
-          target="_blank" class="btn-primary">Apply for Class of 2026</a>
-        <a href="#alumni" class="btn-ghost">View Alumni</a>
+          target="_blank" rel="noopener" class="btn-primary cta-button reveal reveal-delay-3">Apply for Class of
+          2026</a>
+        <p class="cta-intake reveal reveal-delay-4">Intake closes 20 June 2026 · 15 places only</p>
       </div>
-    </div>
-    <div class="hero-scroll-line"></div>
-  </section>
-
-  <div class="ticker-wrap">
-    <div class="ticker-track">
-      <div class="ticker-item">
-        <span class="ticker-firm">McKinsey & Company</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">Boston Consulting Group</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">Bain & Company</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">Oliver Wyman</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">EY Parthenon</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">Deloitte Strategy &amp; Ops</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">PwC Strategy&amp;</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">LEK Consulting</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">Roland Berger</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">Kearney</span><span class="ticker-sep"></span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-firm">McKinsey & Company</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">Boston Consulting Group</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">Bain & Company</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">Oliver Wyman</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">EY Parthenon</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">Deloitte Strategy &amp; Ops</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">PwC Strategy&amp;</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">LEK Consulting</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">Roland Berger</span><span class="ticker-sep"></span>
-        <span class="ticker-firm">Kearney</span><span class="ticker-sep"></span>
-      </div>
-    </div>
-  </div>
-
-  <div class="about-wrap" id="about">
-    <div class="about">
-      <div class="about-left reveal">
-        <p class="about-label">The Academy</p>
-        <h2 class="about-title">Built for those<br>who play to <em>win.</em></h2>
-      </div>
-      <div class="about-right reveal reveal-delay-2">
-        <p>Path2 is a selective consulting academy preparing the next generation of leaders for careers at top-tier
-          consulting firms. We go beyond frameworks — we build the mindset, network, and credibility that elite firms
-          expect on day one.</p>
-        <p>Every cohort is small, intensive, and chosen with purpose.</p>
-        <div class="about-stats">
-          <div>
-            <div class="stat-number">15</div>
-            <div class="stat-label">Places Per Cohort</div>
-          </div>
-          <div>
-            <div class="stat-number">1</div>
-            <div class="stat-label">Cohorts Delivered</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <section class="info-section reveal" id="about-path2">
-    <h2 class="info-title">About Path2</h2>
-    <p class="info-sub">We are dedicated to helping ambitious students break into competitive careers through expert
-      guidance, comprehensive preparation, strategic networking, and key resources. Every student deserves access to the
-      mentorship needed to achieve their career dreams</p>
-    <div class="info-grid about-grid reveal reveal-delay-2">
-
-      <div class="info-card">
-        <div class="info-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2f8a" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="20" width="20" height="2" />
-            <path d="M4 20V10" />
-            <path d="M10 20V10" />
-            <path d="M14 20V10" />
-            <path d="M20 20V10" />
-            <path d="M2 10l10-5 10 5" />
-          </svg>
-        </div>
-        <h3>Expert Guidance</h3>
-        <p>Personalised mentorship and learning from industry professionals who have been where you want to go.</p>
-      </div>
-
-      <div class="info-card">
-        <div class="info-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2f8a" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path
-              d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
-          </svg>
-        </div>
-        <h3>Key Resources</h3>
-        <p>Gain access to essential information, discovering new opportunities and standing out from your competition
-        </p>
-      </div>
-
-      <div class="info-card">
-        <div class="info-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2f8a" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-            <circle cx="12" cy="7" r="4" />
-          </svg>
-        </div>
-        <h3>Strategic Networking</h3>
-        <p>Connect with alumni and professionals to unlock hidden opportunities.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="info-section reveal" id="services">
-    <h2 class="info-title">Services</h2>
-    <p class="info-sub">Comprehensive support to help you succeed at every stage of your career journey.</p>
-    <div class="info-grid services-grid reveal reveal-delay-2">
-
-      <div class="info-card">
-        <div class="info-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2f8a" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10" />
-            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
-          </svg>
-        </div>
-        <h3>Career Guidance</h3>
-        <p>1:1 sessions to map out your ideal career path and build a clear strategy to reach it, with the right
-          resources to execute.</p>
-      </div>
-
-      <div class="info-card">
-        <div class="info-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2f8a" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <line x1="8" y1="6" x2="21" y2="6" />
-            <line x1="8" y1="12" x2="21" y2="12" />
-            <line x1="8" y1="18" x2="21" y2="18" />
-            <line x1="3" y1="6" x2="3.01" y2="6" />
-            <line x1="3" y1="12" x2="3.01" y2="12" />
-            <line x1="3" y1="18" x2="3.01" y2="18" />
-          </svg>
-        </div>
-        <h3>Profile Optimisation</h3>
-        <p>Refining your LinkedIn, CV, cover letter, and portfolio so your profile reflects your potential and converts
-          opportunities.</p>
-      </div>
-
-      <div class="info-card">
-        <div class="info-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2f8a" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-          </svg>
-        </div>
-        <h3>Internship Procurement</h3>
-        <p>Helping you secure relevant work experience at firms aligned with your strengths and long-term goals.</p>
-      </div>
-
-      <div class="info-card">
-        <div class="info-card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a2f8a" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
-            <path d="M9 22v-4h6v4" />
-            <path d="M8 6h.01" />
-            <path d="M16 6h.01" />
-            <path d="M12 6h.01" />
-            <path d="M12 10h.01" />
-            <path d="M12 14h.01" />
-            <path d="M16 10h.01" />
-            <path d="M16 14h.01" />
-            <path d="M8 10h.01" />
-            <path d="M8 14h.01" />
-          </svg>
-        </div>
-        <h3>Industry expertise</h3>
-        <p>Expert-level courses designed to give you the technical knowledge and commercial understanding to stand out.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="our-alumni-section" id="alumni">
-    <div style="max-width:1300px;margin:0 auto;">
-      <div class="our-alumni-header">
-        <div class="our-alumni-header-left">
-          <p class="section-label reveal">Class of 2026</p>
-          <h2 class="section-title reveal reveal-delay-1">Our <em>Alumni.</em></h2>
-        </div>
-        <div class="our-alumni-controls reveal reveal-delay-2">
-          <button class="alumni-slider-btn" id="alumniPrev" aria-label="Previous">&#8592;</button>
-          <span class="alumni-slider-counter" id="alumniCounter">1 / 12</span>
-          <button class="alumni-slider-btn" id="alumniNext" aria-label="Next">&#8594;</button>
-        </div>
-      </div>
-
-      <div class="alumni-slider-viewport" id="alumniViewport">
-        <div class="alumni-slider-track" id="alumniTrack">
-        </div>
-      </div>
-
-      <div class="alumni-slider-progress" id="alumniProgress">
-      </div>
-    </div>
-  </section>
-
-  <section class="partners-section" id="partners">
-    <div class="partners-inner">
-      <div class="partners-left">
-        <p class="section-label reveal">University Partners</p>
-        <h2 class="section-title reveal reveal-delay-1">Our <em>Network.</em></h2>
-        <p class="reveal reveal-delay-2">Path2 works directly with students and societies at the UK's leading
-          universities — providing access, coaching, and placements at elite consulting firms.</p>
-      </div>
-      <div class="orbital-outer reveal reveal-delay-2">
-        <div class="orbital-wrap" id="orbitalWrap">
-          <div class="orbit-ring orbit-ring-1"></div>
-          <div class="orbit-ring orbit-ring-2"></div>
-          <div class="orbital-center">
-            <div class="orbital-center-text">PATH2<br>NETWORK</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-section" id="apply">
-    <div class="cta-bg-circle"></div>
-    <div class="cta-bg-circle-2"></div>
-    <div class="cta-content">
-      <p class="cta-eyebrow reveal">Applications Now Open</p>
-      <h2 class="cta-title reveal reveal-delay-1">Your consulting<br>career starts <em>here.</em></h2>
-      <p class="cta-sub reveal reveal-delay-2">Join a selective cohort of 15 ambitious students preparing for offers at
-        the world's leading consulting firms.</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8R1CfEZj9jSy-531BmPSIcbUNEbxkxQrMMoJz9t6jpANODw/viewform?usp=dialog"
-        target="_blank" class="btn-primary reveal reveal-delay-3" style="display:inline-block;">Apply for Class of
-        2026</a>
-      <p class="cta-intake reveal reveal-delay-4">Intake closes 20 June 2026 · 15 places only</p>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer>
     <div class="footer-bottom">
       <div class="nav-logo">
-        <img src="path2_logo.webp" alt="Path2 Logo" style="height: 45px; width: auto;">
+        <img src="path2_logo.webp" alt="Path2">
       </div>
       <div class="footer-copy">© 2026 Path2 Consulting Academy. All rights reserved.</div>
     </div>
   </footer>
 
-  <script>
-    /* ══ MONTFORT-STYLE PARTICLE CANVAS ══ */
-    (function () {
-      const canvas = document.getElementById('hero-canvas');
-      const ctx = canvas.getContext('2d');
-      let W, H, nodes = [];
-      const mouse = { x: -9999, y: -9999 };
-      const NODE_COUNT = 55, MAX_DIST = 155, MOUSE_DIST = 210;
-
-      function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
-      function rnd(a, b) { return a + Math.random() * (b - a); }
-
-      function init() {
-        nodes = [];
-        for (let i = 0; i < NODE_COUNT; i++) nodes.push({ x: Math.random() * W, y: Math.random() * H, vx: rnd(-.28, .28), vy: rnd(-.18, .18), r: rnd(1.5, 3.5), op: rnd(.2, .65) });
-      }
-
-      function draw() {
-        ctx.clearRect(0, 0, W, H);
-        for (let i = 0; i < nodes.length; i++) {
-          for (let j = i + 1; j < nodes.length; j++) {
-            const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
-            const d = Math.sqrt(dx * dx + dy * dy);
-            if (d < MAX_DIST) { ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.strokeStyle = `rgba(255,255,255,${(1 - d / MAX_DIST) * .17})`; ctx.lineWidth = .8; ctx.stroke(); }
-          }
-          const mdx = nodes[i].x - mouse.x, mdy = nodes[i].y - mouse.y, md = Math.sqrt(mdx * mdx + mdy * mdy);
-          if (md < MOUSE_DIST) { ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(mouse.x, mouse.y); ctx.strokeStyle = `rgba(201,168,76,${(1 - md / MOUSE_DIST) * .5})`; ctx.lineWidth = .9; ctx.stroke(); }
-        }
-        for (const n of nodes) {
-          const mdx = n.x - mouse.x, mdy = n.y - mouse.y, md = Math.sqrt(mdx * mdx + mdy * mdy), h = md < MOUSE_DIST ? (1 - md / MOUSE_DIST) : 0;
-          ctx.beginPath(); ctx.arc(n.x, n.y, n.r + h * 2.5, 0, Math.PI * 2);
-          ctx.fillStyle = h > .1 ? `rgba(201,168,76,${n.op + h * .45})` : `rgba(255,255,255,${n.op})`; ctx.fill();
-        }
-      }
-
-      function update() {
-        for (const n of nodes) {
-          n.x += n.vx; n.y += n.vy;
-          if (n.x < -20) n.x = W + 20; if (n.x > W + 20) n.x = -20;
-          if (n.y < -20) n.y = H + 20; if (n.y > H + 20) n.y = -20;
-        }
-      }
-
-      (function loop() { update(); draw(); requestAnimationFrame(loop); })();
-      window.addEventListener('resize', () => { resize(); init(); });
-      document.addEventListener('mousemove', e => { const r = canvas.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
-      resize(); init();
-    })();
-
-    /* ══ ORBITAL ══ */
-    (function () {
-      const wrap = document.getElementById('orbitalWrap');
-
-      function getOrbitalSizes() {
-        const size = wrap.offsetWidth;
-        const cx = size / 2, cy = size / 2;
-        const scale = size / 480;
-        const r1 = Math.round(120 * scale);
-        const r2 = Math.round(200 * scale);
-        return { cx, cy, r1, r2, nodeSize: Math.max(52, Math.round(80 * scale)) };
-      }
-
-      // Updated list with specified names and hover states
-      const universities = [
-        { full: 'Essex Consulting Society', label: 'ECS', r: 120, speed: 0.6 },
-        { full: 'Oxford Brookes Consulting Society', label: 'OBCS', r: 120, speed: 0.6 },
-        { full: 'Swansea Consulting Society', label: 'SCS', r: 120, speed: 0.6 },
-        { full: 'Durham Consulting Society', label: 'DCS', r: 200, speed: -0.35 },
-        { full: 'CCN', label: 'CCN', r: 200, speed: -0.35 },
-        { full: 'Fineda', label: 'FINEDA', r: 200, speed: -0.35 }
-      ];
-
-      const inner = universities.filter(u => u.r === 120);
-      const outer = universities.filter(u => u.r === 200);
-
-      const nodeData = [];
-
-      inner.forEach((u, i) => {
-        const baseAngle = (i / inner.length) * Math.PI * 2;
-        const el = document.createElement('div'); el.className = 'orbit-node';
-        el.setAttribute('data-full', u.full);
-        el.innerHTML = `<span class="orbit-node-label">${u.label}</span>`;
-        wrap.appendChild(el);
-        const line = document.createElement('div'); line.className = 'orbit-connector'; wrap.appendChild(line);
-        nodeData.push({ el, line, isInner: true, baseAngle, speed: u.speed });
-      });
-      outer.forEach((u, i) => {
-        const baseAngle = (i / outer.length) * Math.PI * 2 + (Math.PI / outer.length);
-        const el = document.createElement('div'); el.className = 'orbit-node';
-        el.setAttribute('data-full', u.full);
-        el.innerHTML = `<span class="orbit-node-label">${u.label}</span>`;
-        wrap.appendChild(el);
-        const line = document.createElement('div'); line.className = 'orbit-connector'; wrap.appendChild(line);
-        nodeData.push({ el, line, isInner: false, baseAngle, speed: u.speed });
-      });
-
-      function anim(ts) {
-        const { cx, cy, r1, r2, nodeSize } = getOrbitalSizes();
-        const half = nodeSize / 2;
-        const t = ts * .001;
-        nodeData.forEach(n => {
-          const r = n.isInner ? r1 : r2;
-          const angle = n.baseAngle + t * n.speed;
-          const x = cx + r * Math.cos(angle) - half;
-          const y = cy + r * Math.sin(angle) - half;
-          n.el.style.cssText = `left:${x}px;top:${y}px;position:absolute;width:${nodeSize}px;height:${nodeSize}px;`;
-          const nx = x + half, ny = y + half, dx = nx - cx, dy = ny - cy, dist = Math.sqrt(dx * dx + dy * dy);
-          const deg = Math.atan2(dy, dx) * 180 / Math.PI;
-          n.line.style.cssText = `position:absolute;top:${cy}px;left:${cx}px;width:${dist - half}px;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.3),transparent);transform-origin:left center;transform:rotate(${deg}deg);z-index:1;`;
-        });
-        requestAnimationFrame(anim);
-      }
-      requestAnimationFrame(anim);
-    })();
-
-    /* ══ CURSOR ══ */
-    const cursor = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    (function al() { cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(al); })();
-    document.querySelectorAll('a,button,.orbit-node').forEach(el => {
-      el.addEventListener('mouseenter', () => { ring.style.width = '52px'; ring.style.height = '52px'; ring.style.borderColor = 'rgba(201,168,76,.6)'; });
-      el.addEventListener('mouseleave', () => { ring.style.width = '32px'; ring.style.height = '32px'; ring.style.borderColor = 'rgba(201,168,76,.4)'; });
-    });
-
-    /* ══ HAMBURGER MENU ══ */
-    const hamburger = document.getElementById('navHamburger');
-    const mobileMenu = document.getElementById('navMobileMenu');
-    hamburger.addEventListener('click', () => {
-      const open = mobileMenu.classList.toggle('open');
-      hamburger.classList.toggle('open', open);
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-    document.querySelectorAll('.nav-mobile-link, .nav-mobile-cta-btn').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        hamburger.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-
-    /* NAV SCROLL */
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
-
-    /* REVEAL */
-    const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: .1 });
-    document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
-
-    /* ══ OUR ALUMNI SLIDER ══ */
-    (function () {
-      const alumniNames = [
-        'Constantine Wang',
-        'Jennifer Qiu',
-        'Aronima Biswas',
-        'Shaylan Roy',
-        'Vinay Attra',
-        'Tisha Singhal',
-        'Annabel Tanner',
-        'Joseph Oldfield',
-        'Hanif Firdaus',
-        'Olufemi Ogunseinde',
-        'Jail Anaur Chipantiza Guashpa',
-        'Muhammad Hafiz Bin Morshidi',
-        'Rahul Surapaneni',
-        'Zachariah Kissel'
-      ];
-
-      const track = document.getElementById('alumniTrack');
-      const viewport = document.getElementById('alumniViewport');
-      const counter = document.getElementById('alumniCounter');
-      const progressBar = document.getElementById('alumniProgress');
-      const prevBtn = document.getElementById('alumniPrev');
-      const nextBtn = document.getElementById('alumniNext');
-
-      const total = alumniNames.length;
-      let currentIndex = 0;
-
-      function getCardsVisible() {
-        const w = window.innerWidth;
-        if (w <= 480) return 1;
-        if (w <= 768) return 2;
-        if (w <= 1024) return 3;
-        return 4;
-      }
-
-      function formatName(full) {
-        const parts = full.trim().split(' ');
-        if (parts.length === 1) return { first: parts[0], rest: '' };
-        return { first: parts[0], rest: parts.slice(1).join(' ') };
-      }
-
-      alumniNames.forEach((name, i) => {
-        const { first, rest } = formatName(name);
-        const card = document.createElement('div');
-        card.className = 'alumni-slide-card';
-        card.innerHTML = `
-      <div class="alumni-slide-name">${first}<br><em>${rest}</em></div>
-      <div class="alumni-slide-meta">
-        <span class="alumni-slide-cohort-tag">Class of 2026</span>
-        <span class="alumni-slide-year">Path2 Academy</span>
-      </div>
-      <div class="alumni-slide-index">${String(i + 1).padStart(2, '0')}</div>
-    `;
-        track.appendChild(card);
-      });
-
-      for (let i = 0; i < total; i++) {
-        const seg = document.createElement('div');
-        seg.className = 'alumni-prog-seg' + (i === 0 ? ' active' : '');
-        progressBar.appendChild(seg);
-      }
-
-      function getCardWidth() {
-        const vw = viewport.offsetWidth;
-        const cv = getCardsVisible();
-        return Math.floor((vw - (cv - 1) * 2) / cv);
-      }
-
-      function updateSlider() {
-        const cardW = getCardWidth();
-        const offset = currentIndex * (cardW + 2);
-        track.style.transform = `translateX(-${offset}px)`;
-
-        const cards = track.querySelectorAll('.alumni-slide-card');
-        cards.forEach(c => { c.style.width = cardW + 'px'; });
-
-        counter.textContent = `${currentIndex + 1} / ${total}`;
-
-        const segs = progressBar.querySelectorAll('.alumni-prog-seg');
-        segs.forEach((s, i) => s.classList.toggle('active', i === currentIndex));
-
-        prevBtn.style.opacity = currentIndex === 0 ? '0.3' : '1';
-        nextBtn.style.opacity = currentIndex >= total - 1 ? '0.3' : '1';
-      }
-
-      prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) { currentIndex--; updateSlider(); }
-      });
-
-      nextBtn.addEventListener('click', () => {
-        if (currentIndex < total - 1) { currentIndex++; updateSlider(); }
-      });
-
-      let touchStartX = 0;
-      viewport.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-      viewport.addEventListener('touchend', e => {
-        const dx = touchStartX - e.changedTouches[0].clientX;
-        if (Math.abs(dx) > 40) {
-          if (dx > 0 && currentIndex < total - 1) { currentIndex++; updateSlider(); }
-          if (dx < 0 && currentIndex > 0) { currentIndex--; updateSlider(); }
-        }
-      }, { passive: true });
-
-      window.addEventListener('resize', updateSlider);
-      updateSlider();
-    })();
-  </script>
 </body>
 
 </html>

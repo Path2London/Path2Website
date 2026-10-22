@@ -20,7 +20,7 @@ const PARTNERS = [
   { full: 'Oxford Brookes Consulting Society', label: 'OBCS', ring: 'inner' },
   { full: 'Swansea Consulting Society', label: 'SCS', ring: 'inner' },
   { full: 'Durham Consulting Society', label: 'DCS', ring: 'outer' },
-  { full: 'CCN', label: 'CCN', ring: 'outer' },
+  { full: 'Cambridge Consulting Network', label: 'CCN', ring: 'outer' },
   { full: 'Fineda', label: 'FINEDA', ring: 'outer' }
 ];
 
